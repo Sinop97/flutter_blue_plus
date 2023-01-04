@@ -131,6 +131,7 @@ class FlutterBluePlus {
     List<Guid> withServices = const [],
     List<Guid> withDevices = const [],
     List<String> macAddresses = const [],
+    List<int> manufacturerIds = const [],
     Duration? timeout,
     bool allowDuplicates = false,
   }) async* {
@@ -138,7 +139,8 @@ class FlutterBluePlus {
       ..androidScanMode = scanMode.value
       ..allowDuplicates = allowDuplicates
       ..macAddresses.addAll(macAddresses)
-      ..serviceUuids.addAll(withServices.map((g) => g.toString()).toList());
+      ..serviceUuids.addAll(withServices.map((g) => g.toString()).toList())
+      ..manufacturerIds.addAll(manufacturerIds);
 
     if (_isScanning.value == true) {
       throw Exception('Another scan is already in progress.');
@@ -200,6 +202,7 @@ class FlutterBluePlus {
     List<Guid> withServices = const [],
     List<Guid> withDevices = const [],
     List<String> macAddresses = const [],
+    List<int> manufacturerIds = const [],
     Duration? timeout,
     bool allowDuplicates = false,
   }) async {
@@ -208,6 +211,7 @@ class FlutterBluePlus {
             withServices: withServices,
             withDevices: withDevices,
             macAddresses: macAddresses,
+            manufacturerIds: manufacturerIds,
             timeout: timeout,
             allowDuplicates: allowDuplicates)
         .drain();

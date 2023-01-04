@@ -926,9 +926,11 @@ public class FlutterBluePlusPlugin implements FlutterPlugin, MethodCallHandler, 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   private List<ScanFilter> fetchFilters(Protos.ScanSettings proto) {
     List<ScanFilter> filters;
+    byte[] manufacturerData = new byte[0];
 
     int macCount = proto.getMacAddressesCount();
     int serviceCount = proto.getServiceUuidsCount();
+    int manufacturerIdCount = proto.getManufacturerIdsCount();
     int count = macCount > 0 ? macCount : serviceCount;
     filters = new ArrayList<>(count);
 
@@ -941,6 +943,11 @@ public class FlutterBluePlusPlugin implements FlutterPlugin, MethodCallHandler, 
         String uuid = proto.getServiceUuids(i);
         f = new ScanFilter.Builder().setServiceUuid(ParcelUuid.fromString(uuid)).build();
       }
+      filters.add(f);
+    }
+
+    for (int i = 0; i < manufacturerIdCount; i++) {
+      ScanFilter f = new ScanFilter.Builder().setManufacturerData(proto.getManufacturerIds(i), manufacturerData).build();
       filters.add(f);
     }
 
