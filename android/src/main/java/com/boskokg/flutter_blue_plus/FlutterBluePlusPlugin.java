@@ -941,7 +941,11 @@ public class FlutterBluePlusPlugin implements FlutterPlugin, MethodCallHandler, 
         f = new ScanFilter.Builder().setDeviceAddress(macAddress).build();
       } else {
         String uuid = proto.getServiceUuids(i);
-        f = new ScanFilter.Builder().setServiceUuid(ParcelUuid.fromString(uuid)).build();
+        if (proto.getWithServiceUuidMask()) {
+          f = new ScanFilter.Builder().setServiceUuid(ParcelUuid.fromString(uuid), ParcelUuid.fromString(uuid)).build();
+        } else {
+          f = new ScanFilter.Builder().setServiceUuid(ParcelUuid.fromString(uuid)).build();
+        }
       }
       filters.add(f);
     }

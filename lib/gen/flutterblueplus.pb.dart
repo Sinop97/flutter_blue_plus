@@ -211,16 +211,18 @@ class AdvertisementData extends $pb.GeneratedMessage {
 class ScanSettings extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ScanSettings', createEmptyInstance: create)
     ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'androidScanMode', $pb.PbFieldType.O3)
-    ..pPS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'serviceUuids')
-    ..aOB(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'allowDuplicates')
-    ..pPS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'macAddresses')
-    ..p<$core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'manufacturerIds', $pb.PbFieldType.K3)
+    ..aOB(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'withServiceUuidMask')
+    ..pPS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'serviceUuids')
+    ..aOB(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'allowDuplicates')
+    ..pPS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'macAddresses')
+    ..p<$core.int>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'manufacturerIds', $pb.PbFieldType.K3)
     ..hasRequiredFields = false
   ;
 
   ScanSettings._() : super();
   factory ScanSettings({
     $core.int? androidScanMode,
+    $core.bool? withServiceUuidMask,
     $core.Iterable<$core.String>? serviceUuids,
     $core.bool? allowDuplicates,
     $core.Iterable<$core.String>? macAddresses,
@@ -229,6 +231,9 @@ class ScanSettings extends $pb.GeneratedMessage {
     final _result = create();
     if (androidScanMode != null) {
       _result.androidScanMode = androidScanMode;
+    }
+    if (withServiceUuidMask != null) {
+      _result.withServiceUuidMask = withServiceUuidMask;
     }
     if (serviceUuids != null) {
       _result.serviceUuids.addAll(serviceUuids);
@@ -275,22 +280,31 @@ class ScanSettings extends $pb.GeneratedMessage {
   void clearAndroidScanMode() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.List<$core.String> get serviceUuids => $_getList(1);
+  $core.bool get withServiceUuidMask => $_getBF(1);
+  @$pb.TagNumber(2)
+  set withServiceUuidMask($core.bool v) { $_setBool(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasWithServiceUuidMask() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearWithServiceUuidMask() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.bool get allowDuplicates => $_getBF(2);
-  @$pb.TagNumber(3)
-  set allowDuplicates($core.bool v) { $_setBool(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasAllowDuplicates() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearAllowDuplicates() => clearField(3);
+  $core.List<$core.String> get serviceUuids => $_getList(2);
 
   @$pb.TagNumber(4)
-  $core.List<$core.String> get macAddresses => $_getList(3);
+  $core.bool get allowDuplicates => $_getBF(3);
+  @$pb.TagNumber(4)
+  set allowDuplicates($core.bool v) { $_setBool(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasAllowDuplicates() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearAllowDuplicates() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.List<$core.int> get manufacturerIds => $_getList(4);
+  $core.List<$core.String> get macAddresses => $_getList(4);
+
+  @$pb.TagNumber(6)
+  $core.List<$core.int> get manufacturerIds => $_getList(5);
 }
 
 class ScanResult extends $pb.GeneratedMessage {

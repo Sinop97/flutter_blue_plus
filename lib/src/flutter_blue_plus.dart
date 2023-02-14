@@ -134,11 +134,13 @@ class FlutterBluePlus {
     List<int> manufacturerIds = const [],
     Duration? timeout,
     bool allowDuplicates = false,
+    bool withServiceUuidMask = false,
   }) async* {
     var settings = protos.ScanSettings.create()
       ..androidScanMode = scanMode.value
       ..allowDuplicates = allowDuplicates
       ..macAddresses.addAll(macAddresses)
+      ..withServiceUuidMask = withServiceUuidMask
       ..serviceUuids.addAll(withServices.map((g) => g.toString()).toList())
       ..manufacturerIds.addAll(manufacturerIds);
 
@@ -205,10 +207,12 @@ class FlutterBluePlus {
     List<int> manufacturerIds = const [],
     Duration? timeout,
     bool allowDuplicates = false,
+    bool withServiceMask = false,
   }) async {
     await scan(
             scanMode: scanMode,
             withServices: withServices,
+            withServiceUuidMask: withServiceMask,
             withDevices: withDevices,
             macAddresses: macAddresses,
             manufacturerIds: manufacturerIds,
